@@ -1,0 +1,14 @@
+h1 Object State Reconstruction
+
+.panel.panel-default
+	.panel-heading
+		h3 Upload a CSV File
+
+	= simple_form_for :file_upload, url: pages_path, method: :post do |f|
+		.panel-body
+
+			= f.input :csv_upload, as: :file
+
+		.panel-footer
+			= f.submit 'Save', class: 'btn btn-default'
+

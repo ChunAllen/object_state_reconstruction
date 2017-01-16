@@ -17,3 +17,4 @@ production:
   <<: *default
   database: object_state_production
   username: ''
+  password: ''
