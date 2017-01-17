@@ -30,4 +30,4 @@ h1 Object State Reconstruction
           tr
             td = object.object_id
             td = object.object_type
-            td = object.timestamp
+            td = Time.at(object.timestamp).utc
