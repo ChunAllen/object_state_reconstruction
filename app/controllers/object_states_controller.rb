@@ -1,7 +1,7 @@
 class ObjectStatesController < ApplicationController
 
   def index
-    @object_states = ObjectState.all
+    @object_states = SearchForm.new(params || {}).search
   end
 
   def create

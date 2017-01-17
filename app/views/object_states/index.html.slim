@@ -1,33 +1,47 @@
 h1 Object State Reconstruction
 
+/ Panel for Importing CSV
 .panel.panel-default
 	.panel-heading
 		h3 Upload a CSV File
 
 	= simple_form_for :file_upload, url: object_states_path, method: :post do |f|
 		.panel-body
-
 			= f.input :csv, as: :file
 
 		.panel-footer
 			= f.submit 'Import', class: 'btn btn-default'
 
-
+/ Panel for search form
 .panel.panel-default
   .panel-heading
-    h3 Object States
+    h3 Search Object States
 
-  .panel-body
-    table.table.table-bordered
-      thead
-        tr
-          th Object ID
-          th Object Type
-          th Timestamp
+  = simple_form_for @search_form, url: object_states_path do |f|
+    .panel.body
+      = f.input :object_id, collection: @search_form.object_id_options
 
-      tbody
-        - @object_states.each do |object|
-          tr
-            td = object.object_id
-            td = object.object_type
-            td = Time.at(object.timestamp).utc
+      = f.input :object_type, collection: @search_form.object_type_options
+
+    .panel-footer
+      = f.submit 'Search', class: 'btn btn-default'
+
+/ Panel for displaying object records
+.panel.panel-default
+	.panel-heading
+		h3 Object States
+
+	.panel-body
+		table.table.table-bordered
+			thead
+				tr
+					th Object ID
+					th Object Type
+					th Timestamp
+
+			tbody
+				- @object_states.each do |object|
+					tr
+						td = object.object_id
+						td = object.object_type
+						td = Time.at(object.timestamp).utc

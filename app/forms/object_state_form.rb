@@ -2,15 +2,15 @@ require 'csv'
 
 class ObjectStateForm < BaseForm
 
-  attr_reader :params
+  attr_reader :csv
 
   def initialize(params = {})
-    @params = params
+    @csv = params[:csv].path
   end
 
   def save
     flush_records
-    CSV.foreach(params[:csv].path, headers: true).each do |row|
+    CSV.foreach(csv.path, headers: true).each do |row|
       ObjectState.create!(row.to_hash.except('object_changes'))
     end
     true
