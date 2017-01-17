@@ -1,2 +1,3 @@
 class ObjectState < ApplicationRecord
+
 end
