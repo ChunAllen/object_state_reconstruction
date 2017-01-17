@@ -1,9 +1,11 @@
 class BaseForm
 
   include ActiveModel::Model
+  include ActiveModel::AttributeMethods
 
   def initialize(params = {})
-    self.attributes = params unless params.nil? || params.empty?
+    super(params)
   end
 
 end
+

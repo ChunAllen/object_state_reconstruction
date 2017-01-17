@@ -8,13 +8,13 @@ class ObjectStateForm < BaseForm
     @csv = params[:csv]
   end
 
-  def save
-    flush_records
-    CSV.foreach(csv.path, headers: true).each do |row|
-      ObjectState.create!(row.to_hash.except('object_changes'))
-    end
-    true
-  end
+	def save
+		flush_records
+		CSV.foreach(csv.path, headers: true).each do |row|
+			ObjectState.create!(row.to_hash.except('object_changes'))
+		end
+		errors.empty?
+	end
 
   private
 

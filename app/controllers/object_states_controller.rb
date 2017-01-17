@@ -23,7 +23,7 @@ class ObjectStatesController < ApplicationController
   end
 
   def prepare_search_form
-    @search_form = SearchForm.new(params[:search_form] || {})
+    @search_form = SearchForm.new(params[:search_form]&.permit(:object_id, :object_type) || {})
   end
 
 end

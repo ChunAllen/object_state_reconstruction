@@ -5,7 +5,7 @@ h1 Object State Reconstruction
   .panel-heading
     h3 Search Object States
 
-  = simple_form_for @search_form, as: :search_form, url: object_states_path do |f|
+  = simple_form_for @search_form, as: :search_form, url: object_states_path, method: :get do |f|
     .panel.body
       = f.input :object_id, collection: @search_form.object_id_options
 
