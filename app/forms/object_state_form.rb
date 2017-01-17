@@ -11,9 +11,11 @@ class ObjectStateForm < BaseForm
   def save
     flush_records!
     CSV.foreach(csv.path, headers: true).each do |row|
-      ObjectState.create!(row.to_hash)
+      ObjectState.create(row.to_hash)
     end
     errors.empty?
+  rescue ActiveRecord::RecordInvalid => e
+    errors.add(:base, e.message) and return false
   end
 
   private

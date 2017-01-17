@@ -14,6 +14,5 @@ module ObjectStateReconstruction
     config.time_zone = 'Singapore'
 
     config.autoload_paths << "#{config.root}/app/**"
-
   end
 end

@@ -1,6 +1,6 @@
 # Object State Reconstruction
 
-[Application DEMO](https://objects-state-reconstruction.herokuapp.com).
+[Heroku DEMO](https://objects-state-reconstruction.herokuapp.com).
 
 [Video Demo](https://vimeo.com/199782431)
 
@@ -23,8 +23,15 @@ The CSV columns are:
 
  - **object_id:** is a unique identifier per-object type.
  - **object_type:** denotes the object type.
- - **timestamp:** needs no explaination
+ - **timestamp:** needs no explanation (I displayed it in UTC for readability
+   purposes)
  - **object_changes:** the properties changed for specified object at **timestamp**.
+
+### Setting up the project
+- git clone git@github.com:ChunAllen/object_state_reconstruction.git
+- cd object_state_reconstruction
+- bundle install
+- rake db:create db:migrate
 
 ### How to use the application:
 Click this link for the demo [DEMO](https://objects-state-reconstruction.herokuapp.com).

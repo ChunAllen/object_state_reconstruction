@@ -11,9 +11,11 @@ class ObjectStatesController < ApplicationController
   def create
     @object_state = ObjectStateForm.new(object_state_params)
     if @object_state.save
-      redirect_to object_states_path
+      flash[:notice] = 'CSV has been imported'
     else
+      flash[:error] = @object_state.errors.full_messages.to_sentence
     end
+    redirect_to object_states_path
   end
 
   private
