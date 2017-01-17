@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116233432) do
+ActiveRecord::Schema.define(version: 20170117040748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20170116233432) do
     t.integer  "object_id"
     t.string   "object_type"
     t.bigint   "timestamp"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.jsonb    "object_changes", default: "{}", null: false
+    t.index ["object_changes"], name: "index_object_states_on_object_changes", using: :gin
   end
 
 end

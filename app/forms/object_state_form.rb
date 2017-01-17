@@ -9,16 +9,16 @@ class ObjectStateForm < BaseForm
   end
 
 	def save
-		flush_records
+		flush_records!
 		CSV.foreach(csv.path, headers: true).each do |row|
-			ObjectState.create!(row.to_hash.except('object_changes'))
+			ObjectState.create!(row.to_hash)
 		end
 		errors.empty?
 	end
 
   private
 
-  def flush_records
+  def flush_records!
     ObjectState.destroy_all
   end
 

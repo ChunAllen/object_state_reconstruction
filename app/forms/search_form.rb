@@ -22,6 +22,10 @@ class SearchForm < BaseForm
 		klass.pluck(:object_type).uniq
 	end
 
+  def timestamp_options
+    klass.all.map { |k| [Time.at(k.timestamp).utc, k.timestamp] }
+  end
+
 	private
 
 	def klass

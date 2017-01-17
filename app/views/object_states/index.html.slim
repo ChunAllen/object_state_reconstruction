@@ -7,12 +7,20 @@ h1 Object State Reconstruction
 
   = simple_form_for @search_form, as: :search_form, url: object_states_path, method: :get do |f|
     .panel.body
-      = f.input :object_id, collection: @search_form.object_id_options
+      .row
+        .col-md-4
+          = f.input :object_id, collection: @search_form.object_id_options, label: 'Object ID'
 
-      = f.input :object_type, collection: @search_form.object_type_options
+        .col-md-4
+          = f.input :object_type, collection: @search_form.object_type_options
+
+        .col-md-4
+          = f.input :timestamp, collection: @search_form.timestamp_options
 
     .panel-footer
-      = f.submit 'Search', class: 'btn btn-default'
+      .row
+        .col-md-12
+          = f.submit 'Search', class: 'btn btn-default pull-right'
 
 / Panel for displaying object records
 .panel.panel-default
@@ -25,16 +33,18 @@ h1 Object State Reconstruction
         = link_to 'Import CSV', new_object_state_path, remote: true, class: 'btn btn-primary pull-right'
 
   .panel-body
-    table.table.table-bordered
-      thead
-        tr
-          th Object ID
-          th Object Type
-          th Timestamp
+		table.table.table-bordered
+			thead
+				tr
+					th Object ID
+					th Object Type
+					th Timestamp
+					th Object Changes
 
-      tbody
-        - @object_states.each do |object|
-          tr
-            td = object.object_id
-            td = object.object_type
-            td = Time.at(object.timestamp).utc
+			tbody
+				- @object_states.each do |object|
+					tr
+						td = object.object_id
+						td = object.object_type
+						td = Time.at(object.timestamp).utc
+						td = object.object_changes
