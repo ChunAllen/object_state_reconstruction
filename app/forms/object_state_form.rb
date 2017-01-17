@@ -5,7 +5,7 @@ class ObjectStateForm < BaseForm
   attr_reader :csv
 
   def initialize(params = {})
-    @csv = params[:csv].path
+    @csv = params[:csv]
   end
 
   def save

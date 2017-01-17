@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   root 'object_states#index'
 
-	resources :object_states, only: [:index, :create]
+	resources :object_states, only: [:index, :new, :create]
 
 end
