@@ -1,6 +1,8 @@
 # Object State Reconstruction
 
-[DEMO](https://objects-state-reconstruction.herokuapp.com).
+[Application DEMO](https://objects-state-reconstruction.herokuapp.com).
+
+[Video Demo](https://vimeo.com/199782431)
 
 Object State Reconstruction is a web application that allows you to upload
 a CSV file containing the changes in properties of different objects at
@@ -29,7 +31,7 @@ Click this link for the demo [DEMO](https://objects-state-reconstruction.herokua
 
 The home page allows you to upload a CSV file.
 
-Take a look at public/test.csv for the ideal format of the CSV file (note that the timestamp is Unix timestamp format, and the object_changes is in JSON format).
+Take a look at **public/test.csv** for the ideal format of the CSV file (note that the timestamp is Unix timestamp format, and the object_changes is in JSON format).
 
 Each time a new csv file is uploaded, the database is flushed and data from the csv file is inserted into the database.
 
