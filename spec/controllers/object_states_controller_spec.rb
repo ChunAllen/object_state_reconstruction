@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ObjectStatesController, type: :controller do
 
-  let!(:object_state) { create(:object_state, object_id: 1) }
 
   describe 'GET #index' do
+    let!(:object_state) { create(:object_state, object_id: 1) }
     before { get :index }
 
     it { is_expected.to render_template(:index) }
