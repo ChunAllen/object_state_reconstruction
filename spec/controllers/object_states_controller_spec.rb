@@ -25,8 +25,8 @@ RSpec.describe ObjectStatesController, type: :controller do
         post :create, file_upload: { csv: file }
       end
 
-      it { is_expected.to redirect_to(object_states_path) }
       it { expect(ObjectState.count).to eq(6) }
+      it { is_expected.to redirect_to(object_states_path) }
     end
 
     context 'with invalid csv' do
@@ -35,8 +35,8 @@ RSpec.describe ObjectStatesController, type: :controller do
         post :create, file_upload: { csv: file }
       end
 
-      it { is_expected.to redirect_to(object_states_path) }
       it { expect(ObjectState.count).to eq(0) }
+      it { is_expected.to redirect_to(object_states_path) }
     end
   end
 
