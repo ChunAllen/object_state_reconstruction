@@ -9,8 +9,10 @@ class ObjectStateForm < BaseForm
   end
 
   def save
-    flush_records!
-    ObjectState.create(hashed_objects)
+    ActiveRecord::Base.transaction do
+      flush_records!
+      ObjectState.create!(hashed_objects)
+    end
     errors.empty?
   rescue ActiveRecord::RecordInvalid => e
     errors.add(:base, e.message) and return false
