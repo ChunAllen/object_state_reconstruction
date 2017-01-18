@@ -10,12 +10,14 @@ class ObjectStateForm < BaseForm
 
   def save
     flush_records!
-    CSV.foreach(csv.path, headers: true).each do |row|
-      ObjectState.create(row.to_hash)
-    end
+    ObjectState.create(hashed_objects)
     errors.empty?
   rescue ActiveRecord::RecordInvalid => e
     errors.add(:base, e.message) and return false
+  end
+
+  def hashed_objects
+    CSV.foreach(csv.path, headers: true).entries.map(&:to_hash)
   end
 
   private
