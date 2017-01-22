@@ -1,6 +1,6 @@
 class SearchForm < BaseForm
 
-  attr_accessor :object_id, :object_type, :timestamp
+  attr_accessor :object_id, :timestamp
 
   def initialize(params = {})
     super(params)
@@ -9,7 +9,6 @@ class SearchForm < BaseForm
   def search
     finder = klass.all
     finder = finder.where(object_id: object_id) unless object_id.blank?
-    finder = finder.where(object_type: object_type) unless object_type.blank?
     finder = finder.where(timestamp: timestamp) unless timestamp.blank?
     finder
   end
