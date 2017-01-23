@@ -26,7 +26,6 @@ h1 Object State Reconstruction
         .col-md-12
           = f.submit 'Search', class: 'btn btn-default pull-right'
 
-
 / Panel for displaying object states results
 .panel.panel-default
   .panel-heading
@@ -35,29 +34,10 @@ h1 Object State Reconstruction
         h3 Result
 
   .panel-body
-		- if params[:search_form].present?
+    - if params[:search_form].present?
+      p = "Object ID: #{@search_form.object_id}"
+      p = "Object Type: #{@search_form.object_type}"
 
-			h4 You Searched for
-			p = "Object ID: #{@search_form.object_id}"
-			p = "Object Type: #{@search_form.object_type}"
-
-			hr
-			p Object Changes as of:
-			p = "#{@search_form.timestamp}: #{@object_changes}"
-
-		- else
-			table.table.table-bordered
-				thead
-					tr
-						th Object ID
-						th Object Type
-						th Timestamp
-						th Object Changes
-
-				tbody
-					- ObjectState.all.each do |object|
-						tr
-							td = object.object_id
-							td = object.object_type
-							td = object.timestamp
-							td = object.object_changes
+      hr
+      p Object Changes as of: #{@search_form.timestamp}
+      h5 = @object_changes
