@@ -8,7 +8,6 @@ RSpec.describe ObjectStatesController, type: :controller do
     before { get :index }
 
     it { is_expected.to render_template(:index) }
-    it { expect(assigns(:object_states)).to include(object_state) }
     it { expect(assigns(:search_form)).to be_a(SearchForm) }
   end
 
@@ -25,7 +24,7 @@ RSpec.describe ObjectStatesController, type: :controller do
         post :create, file_upload: { csv: file }
       end
 
-      it { expect(ObjectState.count).to eq(6) }
+      it { expect(ObjectState.count).to eq(7) }
       it { is_expected.to redirect_to(object_states_path) }
     end
 

@@ -15,7 +15,7 @@ RSpec.describe ObjectStateForm, type: :form do
   end
 
   describe '#save' do
-    it { expect { form.save }.to change { ObjectState.count }.from(0).to(6) }
+    it { expect { form.save }.to change { ObjectState.count }.from(0).to(7) }
 
     it { expect(form.save).to be_truthy }
   end

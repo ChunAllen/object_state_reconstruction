@@ -13,13 +13,13 @@ h1 Object State Reconstruction
     .panel.body.search-form
       .row
         .col-md-4
-          = f.input :object_id, collection: @search_form.object_id_options, label: 'Object ID'
+          = f.input :object_id, collection: @search_form.object_id_options, label: 'Object ID', include_blank: false
 
         .col-md-4
-          = f.input :object_type, collection: @search_form.object_type_options
+          = f.input :object_type, collection: @search_form.object_type_options, include_blank: false
 
         .col-md-4
-          = f.input :timestamp
+          = f.input :timestamp, input_html: { required: true }
 
     .panel-footer
       .row
@@ -37,7 +37,18 @@ h1 Object State Reconstruction
     - if params[:search_form].present?
       p = "Object ID: #{@search_form.object_id}"
       p = "Object Type: #{@search_form.object_type}"
-
+      p = "Timestamp: #{@search_form.timestamp}"
+      p Object Changes Logs:
+      table.table.table-bordered
+        thead
+          tr
+            th Timestamp
+            th Object Changes
+        tbody
+          - @search_form.search_result.each do |obj|
+            tr
+              td = obj.timestamp
+              td = obj.object_changes
       hr
-      p Object Changes as of: #{@search_form.timestamp}
-      h5 = @object_changes
+      p Current Object Changes at #{@search_form.timestamp}:
+      h4 = @search_form.object_changes

@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20170117040748) do
   enable_extension "plpgsql"
 
   create_table "object_states", force: :cascade do |t|
-    t.integer  "object_id",                     null: false
-    t.string   "object_type",                   null: false
-    t.bigint   "timestamp",                     null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.jsonb    "object_changes", default: "{}", null: false
+    t.integer  "object_id",                   null: false
+    t.string   "object_type",                 null: false
+    t.bigint   "timestamp",                   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.jsonb    "object_changes", default: {}, null: false
     t.index ["object_changes"], name: "index_object_states_on_object_changes", using: :gin
   end
 
