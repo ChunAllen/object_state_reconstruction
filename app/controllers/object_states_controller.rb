@@ -3,7 +3,7 @@ class ObjectStatesController < ApplicationController
   before_action :prepare_search_form, only: [:index]
 
   def index
-    @object_states = @search_form.search
+    @object_changes = @search_form.search
   end
 
   def new; end

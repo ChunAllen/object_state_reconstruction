@@ -1,16 +1,16 @@
 class SearchForm < BaseForm
 
-  attr_accessor :object_id, :timestamp
+  validates :object_id, :object_type, :timestamp, presence: true
+
+  attr_accessor :object_id, :object_type, :timestamp
 
   def initialize(params = {})
     super(params)
   end
 
   def search
-    finder = klass.all
-    finder = finder.where(object_id: object_id) unless object_id.blank?
-    finder = finder.where(timestamp: timestamp) unless timestamp.blank?
-    finder
+    result = klass.where("object_id = ? AND object_type = ? AND timestamp <= ?", object_id, object_type, timestamp)
+    reconstruct(result.order(:timestamp))
   end
 
   def object_id_options
@@ -21,14 +21,14 @@ class SearchForm < BaseForm
     klass.pluck(:object_type).uniq
   end
 
-  def timestamp_options
-    klass.all.map { |k| [Time.at(k.timestamp).utc, k.timestamp] }
-  end
-
   private
 
   def klass
     ObjectState
+  end
+
+  def reconstruct(result)
+    result.map { |obj| JSON.parse(obj.object_changes) }.reduce(&:merge) || {}
   end
 
 end
