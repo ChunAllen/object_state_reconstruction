@@ -8,6 +8,7 @@ class ObjectStateForm < BaseForm
     @csv = params[:csv]
   end
 
+  # Flushes Object States and Creates hashed objects they are inside a transaction
   def save
     ActiveRecord::Base.transaction do
       flush_records!
@@ -18,6 +19,7 @@ class ObjectStateForm < BaseForm
     errors.add(:base, e.message) and return false
   end
 
+  # Creates array of hashes
   def hashed_objects
     CSV.foreach(csv.path, headers: true).entries.map(&:to_hash)
   end

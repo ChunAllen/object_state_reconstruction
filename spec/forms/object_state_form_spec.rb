@@ -20,4 +20,8 @@ RSpec.describe ObjectStateForm, type: :form do
     it { expect(form.save).to be_truthy }
   end
 
+  describe '#hashed_objects' do
+    it { expect(form.hashed_objects.count).to eq(7) }
+  end
+
 end
