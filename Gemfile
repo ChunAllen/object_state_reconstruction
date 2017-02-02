@@ -38,6 +38,8 @@ gem 'slim-rails'
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sidekiq'
+gem 'sidekiq-status'
+gem 'redis-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

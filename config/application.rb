@@ -7,12 +7,13 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module ObjectStateReconstruction
-  class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-    config.time_zone = 'Singapore'
+	class Application < Rails::Application
+		# Settings in config/environments/* take precedence over those specified here.
+		# Application configuration should go into files in config/initializers
+		# -- all .rb files in that directory are automatically loaded.
+		config.time_zone = 'Singapore'
 
-    config.autoload_paths = ["#{config.root}/app/**", "#{config.root}/app/workers/"]
-  end
+		config.autoload_paths = ["#{config.root}/app/**", "#{config.root}/app/workers/"]
+		config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
+	end
 end

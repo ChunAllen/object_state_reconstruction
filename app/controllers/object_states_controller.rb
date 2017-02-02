@@ -7,6 +7,7 @@ class ObjectStatesController < ApplicationController
   def new; end
 
   def create
+    @worker = CsvImportWorker.perform_async(object_state_params)
     @object_state = ObjectStateForm.new(object_state_params)
     if @object_state.save
       flash[:notice] = 'CSV has been imported'
