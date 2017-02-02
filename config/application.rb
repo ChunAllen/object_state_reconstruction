@@ -13,6 +13,6 @@ module ObjectStateReconstruction
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Singapore'
 
-    config.autoload_paths << "#{config.root}/app/**"
+    config.autoload_paths = ["#{config.root}/app/**", "#{config.root}/app/workers/"]
   end
 end
