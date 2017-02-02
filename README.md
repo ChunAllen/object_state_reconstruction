@@ -2,7 +2,7 @@
 
 [Heroku Demo](https://object-state-reconstruction.herokuapp.com).
 
-[Video Demo](https://vimeo.com/200613310)
+[Video Demo](https://vimeo.com/202241910)
 
 Object State Reconstruction is a web application that allows you to upload
 a CSV file containing the changes in properties of different objects at
